@@ -33,19 +33,22 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: 
-      name: production
-      url: ${{ secrets.ENV_URL }}
+      name: production  # Removed the invalid `url` field
     steps:
       - name: Download build artifact
         run: echo "Downloading build artifact..."
 
-      - name: Deploy application
+      - name: Set Deployment URL from Secret
         env:
           DEPLOY_URL: ${{ secrets.ENV_URL }}
         run: |
-          echo "Simulating deployment..."
-          DEPLOY_URL="https://github.com/aladinsws"
+          echo "Using deployment URL from secret..."
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
 
+      - name: Deploy application
+        run: |
+          echo "Simulating deployment..."
+          echo "Application deployed at: $DEPLOY_URL"
+
       - name: Show Deployment URL
-        run: 'echo "Application deployed at: $DEPLOY_URL"'
+        run: 'echo "Application is live at: $DEPLOY_URL"'
