@@ -40,7 +40,7 @@ jobs:
 
       - name: Set Deployment URL from Secret
         env:
-          DEPLOY_URL: ${{ secrets.ENV_URL }}
+          DEPLOY_URL: ${{ vars.ENV_URL }}
         run: |
           echo "Using deployment URL from secret..."
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
