@@ -34,12 +34,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: production
-      url: https://github.com/aladinsws
+      url: ${{ secrets.ENV_URL }}
     steps:
       - name: Download build artifact
         run: echo "Downloading build artifact..."
 
       - name: Deploy application
+        env:
+          DEPLOY_URL: ${{ secrets.ENV_URL }}
         run: |
           echo "Simulating deployment..."
           DEPLOY_URL="https://github.com/aladinsws"
