@@ -33,7 +33,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: 
-      name: production  # Removed the invalid `url` field
+      name: production
+      url: ${{ vars.ENV_URL }}
     steps:
       - name: Download build artifact
         run: echo "Downloading build artifact..."
