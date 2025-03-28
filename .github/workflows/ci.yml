@@ -39,11 +39,11 @@ jobs:
       - name: Download build artifact
         run: echo "Downloading build artifact..."
 
-      - name: Set Deployment URL from Secret
+      - name: Set Deployment URL from Env
         env:
           DEPLOY_URL: ${{ vars.ENV_URL }}
         run: |
-          echo "Using deployment URL from secret..."
+          echo "Using deployment URL from Environment variables..."
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
 
       - name: Deploy application
